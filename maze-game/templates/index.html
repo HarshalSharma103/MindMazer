@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MindMazer - A way out of Labyrinth </title>
+  <meta name="description"
+    content="A browser-based maze puzzle game. Navigate from Start to Exit using DFS-generated mazes and earn hints along the way." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!--  HOME SCREEN                                                   -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <div id="home-screen" class="screen active" role="main">
+    <div class="home-card">
+      <div class="home-logo" aria-hidden="true">⬡</div>
+      <h1 class="home-title">MindMazer</h1>
+      <p class="home-subtitle">
+        Find a way out of the Labyrinth!
+      </p>
+
+      <ul class="home-rules" aria-label="Game Rules">
+        <li><span class="rule-icon">💡</span> You have 3 hints per maze</li>
+        <li><span class="rule-icon">↩️</span> Click your last cell to undo a step</li>
+        <li><span class="rule-icon"></span>All the best!</li>
+      </ul>
+
+      <button id="play-btn" class="btn btn-primary btn-xl" aria-label="Play Game">
+        <span class="btn-icon">▶</span> Play Game
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!--  GAME SCREEN                                                   -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <div id="game-screen" class="screen" role="main" aria-label="MIndMazer">
+
+    <!-- Top bar -->
+    <header class="game-header">
+      <div class="header-left">
+        <span class="game-logo" aria-hidden="true">⬡</span>
+        <span class="game-title-sm">MindMazer</span>
+      </div>
+      <div class="header-right">
+        <button id="new-game-btn" class="btn btn-secondary" aria-label="Start a new maze">
+          ↺ New Game
+        </button>
+      </div>
+    </header>
+
+    <!-- Feedback banner -->
+    <div id="feedback" class="feedback-banner" role="alert" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Victory banner -->
+    <div id="victory-banner" class="victory-banner hidden" role="status" aria-live="assertive">
+      🎉 Congrats!!! Maze Solved 🎉
+    </div>
+
+    <!-- Main content -->
+    <div class="game-body">
+
+      <!-- Control panel -->
+      <aside class="control-panel" aria-label="Game Controls">
+        <div class="panel-section">
+          <h2 class="panel-heading">Legend</h2>
+          <div class="legend-item"><span class="legend-dot start-dot"></span> Start</div>
+          <div class="legend-item"><span class="legend-dot exit-dot"></span> Exit</div>
+          <div class="legend-item"><span class="legend-dot path-dot"></span> Your path</div>
+          <div class="legend-item"><span class="legend-dot hint-dot"></span> Hint cell</div>
+        </div>
+
+        <div class="panel-section">
+          <h2 class="panel-heading">Controls</h2>
+          <button id="hint-btn" class="btn btn-hint" aria-label="Get a hint">💡 Hint 1</button>
+          <button id="show-path-btn" class="btn btn-danger" aria-label="Reveal the solution path">
+            👁 Show Path
+          </button>
+        </div>
+
+        <div class="panel-section stats-section" aria-label="Game statistics">
+          <h2 class="panel-heading">Stats</h2>
+          <div class="stat-row">
+            <span class="stat-label">Steps</span>
+            <span id="steps-count" class="stat-value">1</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Hints used</span>
+            <span id="hints-count" class="stat-value">0 / 3</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Maze container -->
+      <div class="maze-wrapper" aria-label="Maze grid">
+        <div id="maze-loading" class="maze-loading" aria-live="polite">
+          <div class="spinner"></div>
+          <span>Generating maze…</span>
+        </div>
+        <div id="maze-grid" class="maze-grid" role="grid" aria-label="11 by 11 maze grid"></div>
+      </div>
+
+    </div><!-- /game-body -->
+  </div><!-- /game-screen -->
+
+  <script src="/static/script.js"></script>
+</body>
+
+</html>
